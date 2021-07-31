@@ -4,22 +4,38 @@ import Autocomplete, {
 	AutocompleteRenderInputParams
 } from '@material-ui/lab/Autocomplete';
 import React, { ChangeEvent, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { search } from '../api/api';
 import { Food } from '../models/models';
+import { addFood, GeneralState } from '../store/slice';
 
 const FoodSearch = (): React.ReactElement => {
+	const dispatch = useDispatch();
+	const { foods } = useSelector(GeneralState);
+
 	const [options, setOptions] = useState<Food[]>([]);
 	const [selection, setSelection] = useState<Food | null>(null);
-	const [selections, setSelections] = useState<Food[]>([]);
+
+	// not working yet
+	const filterOptions = (unfilteredOptions: Food[]): Food[] => {
+		return unfilteredOptions.filter((u) => {
+			if (!foods || !foods?.length) {
+				return true;
+			}
+
+			return !foods.map((f) => f.fdcId).includes(u.fdcId);
+		});
+	};
 
 	const handleInputChange = (
-		_event: ChangeEvent<{}>,
+		{ type }: ChangeEvent<{}>,
 		value: string
 	): void => {
-		if (value?.trim().length > 2) {
+		// only search on change events; do not trigger search when selection is made
+		if (value?.trim().length > 2 && type === 'change') {
+			console.log('get', value);
 			search(value.toLowerCase()).then((response) => {
-				console.log(response.data.foods);
-				setOptions(response.data.foods);
+				setOptions(filterOptions(response.data.foods));
 			});
 		}
 	};
@@ -29,7 +45,8 @@ const FoodSearch = (): React.ReactElement => {
 		value: Food | null
 	): void => {
 		if (value) {
-			setSelections([...selections, value as Food]);
+			dispatch(addFood(value as Food));
+			setOptions([]);
 		}
 		setSelection(null);
 	};
