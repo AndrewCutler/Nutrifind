@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Food } from '../models/models'
+import { Food, Nutrient } from '../models/models'
 
 interface IGeneralState {
     foods: Food[];
@@ -8,7 +8,26 @@ interface IGeneralState {
 export const generalSlice = createSlice({
     name: 'general',
     initialState: {
-        foods: []
+        foods: [
+            {
+                description: 'banana',
+                fdcId: 1,
+                foodCategory: 'fruit',
+                foodNutrients: [
+                    { nutrientId: 10, nutrientName: 'potassium', nutrientNumber: '1', unitName: 'mg', value: 100 } as Nutrient,
+                    { nutrientId: 15, nutrientName: 'fiber', nutrientNumber: '2', unitName: 'mg', value: 900 } as Nutrient
+                ]
+            } as Food,
+            {
+                description: 'apple',
+                fdcId: 2,
+                foodCategory: 'fruit',
+                foodNutrients: [
+                    { nutrientId: 10, nutrientName: 'potassium', nutrientNumber: '1', unitName: 'mg', value: 35 } as Nutrient,
+                    { nutrientId: 15, nutrientName: 'fiber', nutrientNumber: '2', unitName: 'mg', value: 700 } as Nutrient
+                ]
+            } as Food,
+        ]
     } as IGeneralState,
     reducers: {
         addFood: (state: IGeneralState, action: PayloadAction<Food>) => {

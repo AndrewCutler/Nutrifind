@@ -33,7 +33,6 @@ const FoodSearch = (): React.ReactElement => {
 	): void => {
 		// only search on change events; do not trigger search when selection is made
 		if (value?.trim().length > 2 && type === 'change') {
-			console.log('get', value);
 			search(value.toLowerCase()).then((response) => {
 				setOptions(filterOptions(response.data.foods));
 			});
