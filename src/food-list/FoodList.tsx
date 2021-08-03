@@ -1,6 +1,11 @@
-import { Collapse, ListItemIcon, ListItemText } from '@material-ui/core';
+import {
+	Checkbox,
+	Collapse,
+	ListItemIcon,
+	ListItemText
+} from '@material-ui/core';
 import { List, ListItem } from '@material-ui/core';
-import React, { ReactElement } from 'react';
+import React, { ChangeEvent, MouseEventHandler, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { Food, Nutrient } from '../models/models';
 import { GeneralState } from '../store/slice';
@@ -13,6 +18,22 @@ import { useEffect } from 'react';
 const FoodList = (): ReactElement => {
 	const [expandedFoods, setExpandedFoods] = useState<number[]>([]);
 	// const { foods } = useSelector(GeneralState);
+	const [selectedNutrients, setSelectedNutrients] = useState([
+		{
+			nutrientId: 10,
+			nutrientName: 'potassium',
+			nutrientNumber: '1',
+			unitName: 'mg',
+			value: 100
+		} as Nutrient,
+		{
+			nutrientId: 20,
+			nutrientName: 'calcium',
+			nutrientNumber: '5',
+			unitName: 'mg',
+			value: 100
+		} as Nutrient
+	]);
 	const foods: Food[] = [
 		{
 			description: 'banana',
@@ -70,6 +91,25 @@ const FoodList = (): ReactElement => {
 		return expandedFoods.includes(fdcId);
 	};
 
+	const isNutrientIncluded = (nutrientId: number): boolean => {
+		return selectedNutrients.map((n) => n.nutrientId).includes(nutrientId);
+	};
+
+	const toggleNutrientSelection = (
+		checked: boolean,
+		nutrient: Nutrient
+	): void => {
+		if (checked) {
+			setSelectedNutrients([...selectedNutrients, nutrient]);
+		} else {
+			setSelectedNutrients([
+				...selectedNutrients.filter(
+					(n) => n.nutrientId !== nutrient.nutrientId
+				)
+			]);
+		}
+	};
+
 	return (
 		<List>
 			{foods.map((f) => {
@@ -89,18 +129,34 @@ const FoodList = (): ReactElement => {
 							timeout='auto'
 							unmountOnExit
 						>
-							{/* map on nutrients */}
-							<List component='div' disablePadding>
-								<ListItem
-									button
-									style={{ paddingLeft: '4rem' }}
-								>
-									<ListItemIcon>
-										{/* change icon */}
-										<StarBorder />
-									</ListItemIcon>
-									<ListItemText primary='Starred' />
-								</ListItem>
+							<List dense>
+								{f.foodNutrients.map((n) => {
+									return (
+										<ListItem
+											button
+											style={{ paddingLeft: '4rem' }}
+											key={n.nutrientId}
+										>
+											<Checkbox
+												checked={isNutrientIncluded(
+													n.nutrientId
+												)}
+												onChange={(_event, value) =>
+													toggleNutrientSelection(
+														value,
+														n
+													)
+												}
+												color='primary'
+											/>
+											<ListItemText
+												style={{ marginLeft: '3rem' }}
+												primary={n.nutrientName}
+												secondary={`${n.value} ${n.unitName}`}
+											/>
+										</ListItem>
+									);
+								})}
 							</List>
 						</Collapse>
 					</>
