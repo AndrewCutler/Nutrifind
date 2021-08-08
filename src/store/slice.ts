@@ -6,29 +6,10 @@ interface IGeneralState {
     selectedNutrients: Nutrient[];
 }
 
-export const generalSlice = createSlice({
+const generalSlice = createSlice({
     name: 'general',
     initialState: {
-        foods: [
-            {
-                description: 'banana',
-                fdcId: 1,
-                foodCategory: 'fruit',
-                foodNutrients: [
-                    { nutrientId: 10, nutrientName: 'potassium', nutrientNumber: '1', unitName: 'mg', value: 100 } as Nutrient,
-                    { nutrientId: 15, nutrientName: 'fiber', nutrientNumber: '2', unitName: 'mg', value: 900 } as Nutrient
-                ]
-            } as Food,
-            {
-                description: 'apple',
-                fdcId: 2,
-                foodCategory: 'fruit',
-                foodNutrients: [
-                    { nutrientId: 10, nutrientName: 'potassium', nutrientNumber: '1', unitName: 'mg', value: 35 } as Nutrient,
-                    { nutrientId: 15, nutrientName: 'fiber', nutrientNumber: '2', unitName: 'mg', value: 700 } as Nutrient
-                ]
-            } as Food,
-        ],
+        foods: [],
         selectedNutrients: [],
     } as IGeneralState,
     reducers: {
@@ -54,6 +35,6 @@ export const generalSlice = createSlice({
 export const { addFood, removeFood, addNutrient, removeNutrient } = generalSlice.actions;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const GeneralState = (state: IGeneralState) => state;
+export const GeneralState = (state: { general: IGeneralState; }) => state.general;
 
-export default generalSlice.reducer;
+export default generalSlice;

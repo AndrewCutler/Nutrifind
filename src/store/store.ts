@@ -1,6 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
-import generalReducer from './slice';
+import { configureStore, EnhancedStore } from '@reduxjs/toolkit'
+import generalSlice from './slice';
 
-export default configureStore({
-    reducer: { general: generalReducer },
+const store: EnhancedStore = configureStore({
+    reducer: { general: generalSlice.reducer },
 });
+
+export default store;
