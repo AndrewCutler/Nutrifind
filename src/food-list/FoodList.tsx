@@ -2,23 +2,25 @@ import {
 	Checkbox,
 	Collapse,
 	ListItemIcon,
-	ListItemText
+	ListItemText,
+	useTheme
 } from '@material-ui/core';
 import { List, ListItem } from '@material-ui/core';
 import React, { ChangeEvent, MouseEventHandler, ReactElement } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Food, Nutrient } from '../models/models';
-import { GeneralState } from '../store/slice';
+import { addNutrient, GeneralState, removeNutrient } from '../store/slice';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 const FoodList = (): ReactElement => {
+	const theme = useTheme();
+	const dispatch = useDispatch();
+
 	const [expandedFoods, setExpandedFoods] = useState<number[]>([]);
-	const { foods } = useSelector(GeneralState);
-	const [selectedNutrients, setSelectedNutrients] = useState<Nutrient[]>([]);
+	const { foods, selectedNutrients } = useSelector(GeneralState);
 
 	const handleClick = (fdcId: number): void => {
 		if (expandedFoods.includes(fdcId)) {
@@ -40,14 +42,11 @@ const FoodList = (): ReactElement => {
 		checked: boolean,
 		nutrient: Nutrient
 	): void => {
+		console.log(checked, nutrient);
 		if (checked) {
-			setSelectedNutrients([...selectedNutrients, nutrient]);
+			dispatch(addNutrient(nutrient));
 		} else {
-			setSelectedNutrients([
-				...selectedNutrients.filter(
-					(n) => n.nutrientId !== nutrient.nutrientId
-				)
-			]);
+			dispatch(removeNutrient(nutrient));
 		}
 	};
 
@@ -55,9 +54,15 @@ const FoodList = (): ReactElement => {
 		<List>
 			{foods?.map((f) => {
 				return (
-					<>
+					<div
+						key={f.fdcId}
+						style={{
+							border: `1px solid ${theme.palette.grey[200]}`,
+							borderRadius: '2px'
+						}}
+					>
 						<ListItem button onClick={() => handleClick(f.fdcId)}>
-							<ListItemIcon></ListItemIcon>
+							<ListItemIcon>delete</ListItemIcon>
 							<ListItemText primary={f.description} />
 							{isExpanded(f.fdcId) ? (
 								<ExpandLess />
@@ -68,6 +73,10 @@ const FoodList = (): ReactElement => {
 						<Collapse
 							in={isExpanded(f.fdcId)}
 							timeout='auto'
+							style={{
+								maxHeight: '33vh',
+								overflowY: 'auto'
+							}}
 							unmountOnExit
 						>
 							<List dense>
@@ -75,7 +84,10 @@ const FoodList = (): ReactElement => {
 									return (
 										<ListItem
 											button
-											style={{ paddingLeft: '4rem' }}
+											style={{
+												paddingLeft: '4rem',
+												border: `1px solid ${theme.palette.grey[300]}`
+											}}
 											key={n.nutrientId}
 										>
 											<Checkbox
@@ -100,7 +112,7 @@ const FoodList = (): ReactElement => {
 								})}
 							</List>
 						</Collapse>
-					</>
+					</div>
 				);
 			})}
 		</List>

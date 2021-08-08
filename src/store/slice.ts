@@ -26,8 +26,8 @@ const generalSlice = createSlice({
                 state.selectedNutrients = [...state.selectedNutrients, action.payload];
             }
         },
-        removeNutrient: (state: IGeneralState, action: PayloadAction<number>) => {
-            state.selectedNutrients = state.selectedNutrients.filter((n) => n.nutrientId !== action.payload);
+        removeNutrient: (state: IGeneralState, action: PayloadAction<Nutrient>) => {
+            state.selectedNutrients = state.selectedNutrients.filter((n) => n.nutrientId !== action.payload.nutrientId);
         }
     },
 })

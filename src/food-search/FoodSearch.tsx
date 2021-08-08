@@ -16,7 +16,6 @@ const FoodSearch = (): React.ReactElement => {
 	const [options, setOptions] = useState<Food[]>([]);
 	const [selection, setSelection] = useState<Food | null>(null);
 
-	// not working yet
 	const filterOptions = (unfilteredOptions: Food[]): Food[] => {
 		return unfilteredOptions.filter((u) => {
 			if (!foods || !foods?.length) {

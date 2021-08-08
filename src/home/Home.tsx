@@ -9,6 +9,7 @@ import { green, brown } from '@material-ui/core/colors';
 import React from 'react';
 import FoodList from '../food-list/FoodList';
 import FoodSearch from '../food-search/FoodSearch';
+import FoodTable from '../food-table/FoodTable';
 
 const theme = createTheme({
 	palette: {
@@ -40,7 +41,9 @@ const Home = (): React.ReactElement => {
 						<FoodSearch />
 						<FoodList />
 					</div>
-					<div />
+					<div>
+						<FoodTable />
+					</div>
 				</Container>
 			</ThemeProvider>
 		</>
