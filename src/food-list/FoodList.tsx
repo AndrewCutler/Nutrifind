@@ -55,6 +55,7 @@ const FoodList = (): ReactElement => {
 		checked: boolean,
 		nutrient: INutrient
 	): void => {
+		console.log(nutrient);
 		if (checked) {
 			dispatch(addNutrient(nutrient));
 		} else {

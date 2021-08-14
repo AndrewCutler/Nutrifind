@@ -7,11 +7,12 @@ import {
 } from '@material-ui/core';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
+import { hasRdv } from '../daily-values';
 import { GeneralState } from '../store/slice';
 import FoodRow from './FoodRow';
 
 const FoodTable = (): ReactElement => {
-	const { foods, selectedNutrients } = useSelector(GeneralState);
+	const { foods, selectedNutrients, rdvOnly } = useSelector(GeneralState);
 
 	return (
 		<>
@@ -22,13 +23,15 @@ const FoodTable = (): ReactElement => {
 							<TableRow>
 								<TableCell>Food</TableCell>
 								{selectedNutrients?.length > 0 ? (
-									selectedNutrients.map((n) => {
-										return (
-											<TableCell key={n.nutrientId}>
-												{n.nutrientName}
-											</TableCell>
-										);
-									})
+									selectedNutrients
+										.filter((n) => !rdvOnly || hasRdv(n))
+										.map((n) => {
+											return (
+												<TableCell key={n.nutrientId}>
+													{n.nutrientName}
+												</TableCell>
+											);
+										})
 								) : (
 									<TableCell>No nutrients selected</TableCell>
 								)}
@@ -38,7 +41,9 @@ const FoodTable = (): ReactElement => {
 									<FoodRow
 										key={f.fdcId}
 										food={f}
-										nutrients={selectedNutrients}
+										nutrients={selectedNutrients.filter(
+											(n) => !rdvOnly || hasRdv(n)
+										)}
 									/>
 								);
 							})}
