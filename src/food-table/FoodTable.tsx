@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
-import { Nutrient } from '../models/models';
+import { INutrient } from '../models/models';
 import { GeneralState } from '../store/slice';
 import FoodRow from './FoodRow';
 import NutrientCell from './NutrientCell';

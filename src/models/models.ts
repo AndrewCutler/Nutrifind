@@ -1,19 +1,25 @@
-export type ResponseData = {
-    foods: Food[];
+export interface IResponseData {
+    foods: IFood[];
     totalHits: number;
 }
 
-export type Food = {
+export interface IFood {
     description: string;
     fdcId: number;
     foodCategory: string;
-    foodNutrients: Nutrient[];
+    foodNutrients: INutrient[];
 }
 
-export type Nutrient = {
+export interface INutrient {
     nutrientId: number;
     nutrientName: string;
     nutrientNumber: string;
     unitName: string;
     value: number;
+}
+
+export interface IDailyValue extends INutrient {
+    nutrientId: number;
+    value: number;
+    unitName: string;
 }

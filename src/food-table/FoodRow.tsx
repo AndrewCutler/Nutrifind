@@ -1,11 +1,11 @@
 import { TableRow, TableCell } from '@material-ui/core';
 import React, { ReactElement } from 'react';
-import { Food, Nutrient } from '../models/models';
+import { IFood, INutrient } from '../models/models';
 import NutrientCell from './NutrientCell';
 
 interface IFoodRowProps {
-	food: Food;
-	nutrients: Nutrient[];
+	food: IFood;
+	nutrients: INutrient[];
 }
 
 const FoodRow = ({ food, nutrients }: IFoodRowProps): ReactElement => {

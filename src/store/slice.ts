@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Food, Nutrient } from '../models/models'
+import { IFood, INutrient } from '../models/models'
 
 interface IGeneralState {
-    foods: Food[];
-    selectedNutrients: Nutrient[];
+    foods: IFood[];
+    selectedNutrients: INutrient[];
 }
 
 const generalSlice = createSlice({
@@ -13,7 +13,7 @@ const generalSlice = createSlice({
         selectedNutrients: [],
     } as IGeneralState,
     reducers: {
-        addFood: (state: IGeneralState, action: PayloadAction<Food>) => {
+        addFood: (state: IGeneralState, action: PayloadAction<IFood>) => {
             if (state.foods.find((f) => f.fdcId === action.payload.fdcId) === undefined) {
                 state.foods = [...state.foods, action.payload];
             }
@@ -21,12 +21,12 @@ const generalSlice = createSlice({
         removeFood: (state: IGeneralState, action: PayloadAction<number>) => {
             state.foods = state.foods.filter((f) => f.fdcId !== action.payload);
         },
-        addNutrient: (state: IGeneralState, action: PayloadAction<Nutrient>) => {
+        addNutrient: (state: IGeneralState, action: PayloadAction<INutrient>) => {
             if (state.selectedNutrients.find((n) => n.nutrientId === action.payload.nutrientId) === undefined) {
                 state.selectedNutrients = [...state.selectedNutrients, action.payload];
             }
         },
-        removeNutrient: (state: IGeneralState, action: PayloadAction<Nutrient>) => {
+        removeNutrient: (state: IGeneralState, action: PayloadAction<INutrient>) => {
             state.selectedNutrients = state.selectedNutrients.filter((n) => n.nutrientId !== action.payload.nutrientId);
         }
     },

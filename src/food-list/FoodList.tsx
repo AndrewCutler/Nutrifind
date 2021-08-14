@@ -8,7 +8,7 @@ import {
 import { List, ListItem } from '@material-ui/core';
 import React, { ChangeEvent, MouseEventHandler, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Food, Nutrient } from '../models/models';
+import { IFood, INutrient } from '../models/models';
 import {
 	addNutrient,
 	GeneralState,
@@ -52,7 +52,7 @@ const FoodList = (): ReactElement => {
 
 	const toggleNutrientSelection = (
 		checked: boolean,
-		nutrient: Nutrient
+		nutrient: INutrient
 	): void => {
 		if (checked) {
 			dispatch(addNutrient(nutrient));

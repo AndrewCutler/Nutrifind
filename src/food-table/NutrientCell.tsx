@@ -1,18 +1,18 @@
 import { TableCell } from '@material-ui/core';
 import React, { ReactElement } from 'react';
-import { Food, Nutrient } from '../models/models';
+import { IFood, INutrient } from '../models/models';
 
 interface INutrientCellProps {
-	food: Food;
-	nutrient: Nutrient;
+	food: IFood;
+	nutrient: INutrient;
 }
 
 const NutrientCell = ({ food, nutrient }: INutrientCellProps): ReactElement => {
 	const getFoodNutrientCellContent = (): string => {
-		const matchingNutrient: Nutrient = food.foodNutrients.find(
-			(foodNutrient: Nutrient) =>
+		const matchingNutrient: INutrient = food.foodNutrients.find(
+			(foodNutrient: INutrient) =>
 				foodNutrient.nutrientId === nutrient.nutrientId
-		) as Nutrient;
+		) as INutrient;
 
 		if (matchingNutrient) {
 			return `${matchingNutrient.value} ${matchingNutrient.unitName}`;

@@ -6,17 +6,17 @@ import Autocomplete, {
 import React, { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { search } from '../api/api';
-import { Food } from '../models/models';
+import { IFood } from '../models/models';
 import { addFood, GeneralState } from '../store/slice';
 
 const FoodSearch = (): React.ReactElement => {
 	const dispatch = useDispatch();
 	const { foods } = useSelector(GeneralState);
 
-	const [options, setOptions] = useState<Food[]>([]);
-	const [selection, setSelection] = useState<Food | null>(null);
+	const [options, setOptions] = useState<IFood[]>([]);
+	const [selection, setSelection] = useState<IFood | null>(null);
 
-	const filterOptions = (unfilteredOptions: Food[]): Food[] => {
+	const filterOptions = (unfilteredOptions: IFood[]): IFood[] => {
 		return unfilteredOptions.filter((u) => {
 			if (!foods || !foods?.length) {
 				return true;
@@ -40,10 +40,10 @@ const FoodSearch = (): React.ReactElement => {
 
 	const handleChange = (
 		_event: ChangeEvent<{}>,
-		value: Food | null
+		value: IFood | null
 	): void => {
 		if (value) {
-			dispatch(addFood(value as Food));
+			dispatch(addFood(value as IFood));
 			setOptions([]);
 		}
 		setSelection(null);
@@ -57,8 +57,8 @@ const FoodSearch = (): React.ReactElement => {
 			blurOnSelect
 			onBlur={() => setOptions([])}
 			onInputChange={handleInputChange}
-			getOptionLabel={(option: Food) => option.description}
-			getOptionSelected={(option: Food, value: Food) =>
+			getOptionLabel={(option: IFood) => option.description}
+			getOptionSelected={(option: IFood, value: IFood) =>
 				option.fdcId === value.fdcId
 			}
 			renderInput={(params: AutocompleteRenderInputParams) => (
