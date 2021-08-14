@@ -7,10 +7,8 @@ import {
 } from '@material-ui/core';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
-import { INutrient } from '../models/models';
 import { GeneralState } from '../store/slice';
 import FoodRow from './FoodRow';
-import NutrientCell from './NutrientCell';
 
 const FoodTable = (): ReactElement => {
 	const { foods, selectedNutrients } = useSelector(GeneralState);

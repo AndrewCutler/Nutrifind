@@ -13,13 +13,7 @@ export interface IFood {
 export interface INutrient {
     nutrientId: number;
     nutrientName: string;
-    nutrientNumber: string;
+    nutrientNumber?: string;
     unitName: string;
     value: number;
-}
-
-export interface IDailyValue extends INutrient {
-    nutrientId: number;
-    value: number;
-    unitName: string;
 }

@@ -20,13 +20,14 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import ClearIcon from '@material-ui/icons/Clear';
+import { hasRdv } from '../daily-values';
 
 const FoodList = (): ReactElement => {
 	const theme = useTheme();
 	const dispatch = useDispatch();
 
 	const [expandedFoods, setExpandedFoods] = useState<number[]>([]);
-	const { foods, selectedNutrients } = useSelector(GeneralState);
+	const { foods, selectedNutrients, rdvOnly } = useSelector(GeneralState);
 
 	const handleRowClick = (fdcId: number): void => {
 		if (expandedFoods.includes(fdcId)) {
@@ -100,36 +101,40 @@ const FoodList = (): ReactElement => {
 							unmountOnExit
 						>
 							<List dense>
-								{f.foodNutrients.map((n) => {
-									return (
-										<ListItem
-											button
-											style={{
-												paddingLeft: '4rem',
-												border: `1px solid ${theme.palette.grey[300]}`
-											}}
-											key={n.nutrientId}
-										>
-											<Checkbox
-												checked={isNutrientIncluded(
-													n.nutrientId
-												)}
-												onChange={(_event, value) =>
-													toggleNutrientSelection(
-														value,
-														n
-													)
-												}
-												color='primary'
-											/>
-											<ListItemText
-												style={{ marginLeft: '3rem' }}
-												primary={n.nutrientName}
-												secondary={`${n.value} ${n.unitName}`}
-											/>
-										</ListItem>
-									);
-								})}
+								{f.foodNutrients
+									.filter((n) => !rdvOnly || hasRdv(n))
+									.map((n) => {
+										return (
+											<ListItem
+												button
+												style={{
+													paddingLeft: '4rem',
+													border: `1px solid ${theme.palette.grey[300]}`
+												}}
+												key={n.nutrientId}
+											>
+												<Checkbox
+													checked={isNutrientIncluded(
+														n.nutrientId
+													)}
+													onChange={(_event, value) =>
+														toggleNutrientSelection(
+															value,
+															n
+														)
+													}
+													color='primary'
+												/>
+												<ListItemText
+													style={{
+														marginLeft: '3rem'
+													}}
+													primary={n.nutrientName}
+													secondary={`${n.value} ${n.unitName}`}
+												/>
+											</ListItem>
+										);
+									})}
 							</List>
 						</Collapse>
 					</div>

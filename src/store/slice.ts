@@ -4,6 +4,7 @@ import { IFood, INutrient } from '../models/models'
 interface IGeneralState {
     foods: IFood[];
     selectedNutrients: INutrient[];
+    rdvOnly: boolean;
 }
 
 const generalSlice = createSlice({
@@ -11,6 +12,7 @@ const generalSlice = createSlice({
     initialState: {
         foods: [],
         selectedNutrients: [],
+        rdvOnly: true,
     } as IGeneralState,
     reducers: {
         addFood: (state: IGeneralState, action: PayloadAction<IFood>) => {
@@ -28,11 +30,14 @@ const generalSlice = createSlice({
         },
         removeNutrient: (state: IGeneralState, action: PayloadAction<INutrient>) => {
             state.selectedNutrients = state.selectedNutrients.filter((n) => n.nutrientId !== action.payload.nutrientId);
+        },
+        setRdvOnly: (state: IGeneralState, action: PayloadAction<boolean>) => {
+            state.rdvOnly = action.payload;
         }
     },
 })
 
-export const { addFood, removeFood, addNutrient, removeNutrient } = generalSlice.actions;
+export const { addFood, removeFood, addNutrient, removeNutrient, setRdvOnly } = generalSlice.actions;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const GeneralState = (state: { general: IGeneralState; }) => state.general;
