@@ -15,21 +15,6 @@ import NutrientCell from './NutrientCell';
 const FoodTable = (): ReactElement => {
 	const { foods, selectedNutrients } = useSelector(GeneralState);
 
-	const getFoodNutrientCellContent = (
-		foodNutrients: Nutrient[],
-		nutrientId: number
-	): string => {
-		const nutrient = foodNutrients.find(
-			(foodNutrient: Nutrient) => foodNutrient.nutrientId === nutrientId
-		);
-
-		if (nutrient) {
-			return `${nutrient.value} ${nutrient.unitName}`;
-		}
-
-		return 'No data';
-	};
-
 	return (
 		<>
 			{foods?.length > 0 && (

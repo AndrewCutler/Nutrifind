@@ -9,11 +9,17 @@ import { List, ListItem } from '@material-ui/core';
 import React, { ChangeEvent, MouseEventHandler, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Food, Nutrient } from '../models/models';
-import { addNutrient, GeneralState, removeNutrient } from '../store/slice';
+import {
+	addNutrient,
+	GeneralState,
+	removeFood,
+	removeNutrient
+} from '../store/slice';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import ClearIcon from '@material-ui/icons/Clear';
 
 const FoodList = (): ReactElement => {
 	const theme = useTheme();
@@ -22,12 +28,18 @@ const FoodList = (): ReactElement => {
 	const [expandedFoods, setExpandedFoods] = useState<number[]>([]);
 	const { foods, selectedNutrients } = useSelector(GeneralState);
 
-	const handleClick = (fdcId: number): void => {
+	const handleRowClick = (fdcId: number): void => {
 		if (expandedFoods.includes(fdcId)) {
 			setExpandedFoods([...expandedFoods.filter((f) => f !== fdcId)]);
 		} else {
 			setExpandedFoods([...expandedFoods, fdcId]);
 		}
+	};
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const handleRemoveFood = (event: any, foodId: number): void => {
+		event.stopPropagation();
+		dispatch(removeFood(foodId));
 	};
 
 	const isExpanded = (fdcId: number): boolean => {
@@ -42,7 +54,6 @@ const FoodList = (): ReactElement => {
 		checked: boolean,
 		nutrient: Nutrient
 	): void => {
-		console.log(checked, nutrient);
 		if (checked) {
 			dispatch(addNutrient(nutrient));
 		} else {
@@ -61,8 +72,17 @@ const FoodList = (): ReactElement => {
 							borderRadius: '2px'
 						}}
 					>
-						<ListItem button onClick={() => handleClick(f.fdcId)}>
-							<ListItemIcon>delete</ListItemIcon>
+						<ListItem
+							button
+							onClick={() => handleRowClick(f.fdcId)}
+						>
+							<ListItemIcon
+								onClick={(event) =>
+									handleRemoveFood(event, f.fdcId)
+								}
+							>
+								<ClearIcon />
+							</ListItemIcon>
 							<ListItemText primary={f.description} />
 							{isExpanded(f.fdcId) ? (
 								<ExpandLess />
