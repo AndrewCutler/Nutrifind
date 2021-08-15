@@ -1,21 +1,28 @@
-import { TableCell } from '@material-ui/core';
+import { TableCell, withStyles } from '@material-ui/core';
 import React, { ReactElement } from 'react';
 import { getPercentageOfRdv } from '../daily-values';
+import { getHexBackgroundByPercentage } from '../math';
 import { IFood, INutrient } from '../models/models';
+
+const StyledTableCell = withStyles((theme) => ({
+	head: {
+		backgroundColor: '#ff4b05'
+		// default e2d5d0
+	}
+}))(TableCell);
 
 const NutrientCell = ({ nutrient }: { nutrient: INutrient }): ReactElement => {
 	const getCellBackgroundColor = (): string => {
-		const percentage = getPercentageOfRdv(nutrient);
-
-		console.log(percentage);
-
-		return percentage.toString();
+		return getHexBackgroundByPercentage(getPercentageOfRdv(nutrient));
 	};
 
 	return (
-		<TableCell onClick={() => getCellBackgroundColor()}>
+		<StyledTableCell
+			onClick={() => getCellBackgroundColor()}
+			style={{ backgroundColor: getCellBackgroundColor() }}
+		>
 			{nutrient.value} {nutrient.unitName}
-		</TableCell>
+		</StyledTableCell>
 	);
 };
 
