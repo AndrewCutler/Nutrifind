@@ -172,3 +172,9 @@ const dailyValuesDictionary: { [key: string]: INutrient } = {
 
 export const hasRdv = (nutrient: INutrient): boolean => Boolean(dailyValuesDictionary[nutrient.nutrientId.toString()]);
 
+export const getPercentageOfRdv = (nutrient: INutrient): number => {
+    const dailyValue = dailyValuesDictionary[nutrient.nutrientId.toString()]?.value;
+
+    return (nutrient.value / dailyValue) * 100;
+}
+

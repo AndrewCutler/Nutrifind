@@ -13,12 +13,17 @@ const FoodRow = ({ food, nutrients }: IFoodRowProps): ReactElement => {
 		<TableRow>
 			<TableCell>{food.description}</TableCell>
 			{nutrients?.map((n) => {
-				return (
+				const matchingNutrient = food.foodNutrients.find(
+					(fn) => fn.nutrientId === n.nutrientId
+				);
+
+				return matchingNutrient ? (
 					<NutrientCell
 						key={`${food.fdcId}-${n.nutrientId}`}
-						food={food}
-						nutrient={n}
+						nutrient={matchingNutrient}
 					/>
+				) : (
+					<TableCell>No data</TableCell>
 				);
 			})}
 		</TableRow>

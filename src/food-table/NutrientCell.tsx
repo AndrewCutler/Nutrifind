@@ -1,27 +1,22 @@
 import { TableCell } from '@material-ui/core';
 import React, { ReactElement } from 'react';
+import { getPercentageOfRdv } from '../daily-values';
 import { IFood, INutrient } from '../models/models';
 
-interface INutrientCellProps {
-	food: IFood;
-	nutrient: INutrient;
-}
+const NutrientCell = ({ nutrient }: { nutrient: INutrient }): ReactElement => {
+	const getCellBackgroundColor = (): string => {
+		const percentage = getPercentageOfRdv(nutrient);
 
-const NutrientCell = ({ food, nutrient }: INutrientCellProps): ReactElement => {
-	const getFoodNutrientCellContent = (): string => {
-		const matchingNutrient: INutrient = food.foodNutrients.find(
-			(foodNutrient: INutrient) =>
-				foodNutrient.nutrientId === nutrient.nutrientId
-		) as INutrient;
+		console.log(percentage);
 
-		if (matchingNutrient) {
-			return `${matchingNutrient.value} ${matchingNutrient.unitName}`;
-		}
-
-		return 'No data';
+		return percentage.toString();
 	};
 
-	return <TableCell>{getFoodNutrientCellContent()}</TableCell>;
+	return (
+		<TableCell onClick={() => getCellBackgroundColor()}>
+			{nutrient.value} {nutrient.unitName}
+		</TableCell>
+	);
 };
 
 export default NutrientCell;
