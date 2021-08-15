@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from './home/Home';
+import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import store from './store/store';
 import { Provider } from 'react-redux';
@@ -8,7 +8,8 @@ import { Provider } from 'react-redux';
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<Home />
+			<App />
+			{/* <Home /> */}
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
