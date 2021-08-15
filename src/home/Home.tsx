@@ -69,8 +69,7 @@ const Home = (): React.ReactElement => {
 					USDA&apos;s FoodData API
 				</a>
 				.
-			</div>{' '}
-			<QueryParamsListener />
+			</div>
 		</Container>
 	);
 };

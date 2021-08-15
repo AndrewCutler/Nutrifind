@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Home from '../home/Home';
+import QueryParamsListener from '../query-params-listener/QueryParamsListener';
 import { GeneralState } from '../store/slice';
 
 const theme = createTheme({
@@ -40,6 +41,7 @@ const App = (): ReactElement => {
 				) : (
 					<Home />
 				)}
+				<QueryParamsListener />
 			</Router>
 		</ThemeProvider>
 	);
