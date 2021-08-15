@@ -25,25 +25,30 @@ const theme = createTheme({
 	}
 });
 
+const useStyles = makeStyles({
+	container: {
+		display: 'flex',
+		justifyContent: 'space-between',
+		marginTop: '42px'
+	},
+	search: {
+		marginRight: '2rem'
+	}
+});
+
 const Home = (): React.ReactElement => {
+	const styles = useStyles();
+
 	return (
 		<>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
-				<Container
-					style={{
-						display: 'flex',
-						justifyContent: 'space-between',
-						marginTop: '42px'
-					}}
-				>
-					<div style={{ flex: '0.5' }}>
+				<Container className={styles.container}>
+					<div className={styles.search}>
 						<FoodSearch />
 						<FoodList />
 					</div>
-					<div>
-						<FoodTable />
-					</div>
+					<FoodTable />
 				</Container>
 			</ThemeProvider>
 		</>
