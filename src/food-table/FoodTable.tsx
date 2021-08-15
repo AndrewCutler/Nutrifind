@@ -3,7 +3,8 @@ import {
 	TableBody,
 	TableCell,
 	TableContainer,
-	TableRow
+	TableRow,
+	useTheme
 } from '@material-ui/core';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
@@ -13,11 +14,16 @@ import FoodRow from './FoodRow';
 
 const FoodTable = (): ReactElement => {
 	const { foods, selectedNutrients, rdvOnly } = useSelector(GeneralState);
+	const theme = useTheme();
 
 	return (
 		<>
 			{foods?.length > 0 && (
-				<TableContainer>
+				<TableContainer
+					style={{
+						border: `1px solid ${theme.palette.secondary.light}`
+					}}
+				>
 					<Table>
 						<TableBody>
 							<TableRow>
