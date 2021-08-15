@@ -173,8 +173,18 @@ const dailyValuesDictionary: { [key: string]: INutrient } = {
 export const hasRdv = (nutrient: INutrient): boolean => Boolean(dailyValuesDictionary[nutrient.nutrientId.toString()]);
 
 export const getPercentageOfRdv = (nutrient: INutrient): number => {
-    const dailyValue = dailyValuesDictionary[nutrient.nutrientId.toString()]?.value;
+    const dailyValue = dailyValuesDictionary[nutrient.nutrientId.toString()];
 
-    return (nutrient.value / dailyValue) * 100;
+    if (!dailyValue) {
+        console.error(`Nutrient data not found for ${nutrient.nutrientName}.`);
+
+        return 0;
+    }
+
+    if (dailyValue.unitName.toLowerCase() !== nutrient.unitName.toLowerCase()) {
+        console.log(`Units do not correspond for ${nutrient.nutrientName}. Data may be inaccurate.`);
+    }
+
+    return (nutrient.value / dailyValue.value) * 100;
 }
 
