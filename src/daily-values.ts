@@ -102,6 +102,72 @@ const dailyValuesDictionary: { [key: string]: INutrient } = {
         nutrientId: 1095,
         value: 11
     },
+    '1003': {
+        nutrientName: 'protein',
+        unitName: 'g',
+        nutrientId: 1003,
+        value: 50
+    },
+    '1089': {
+        nutrientName: 'iron',
+        unitName: 'mg',
+        nutrientId: 1089,
+        value: 18
+    },
+    '1106': {
+        nutrientName: 'vitamin A',
+        unitName: 'mcg',
+        nutrientId: 1106,
+        value: 900
+    },
+    '1109': {
+        nutrientName: 'vitamin E',
+        unitName: 'mg',
+        nutrientId: 1109,
+        value: 15
+    },
+    '1165': {
+        nutrientName: 'thiamin',
+        unitName: 'mg',
+        nutrientId: 1165,
+        value: 1.2
+    },
+    '1166': {
+        nutrientName: 'riboflavin',
+        unitName: 'mg',
+        nutrientId: 1166,
+        value: 1.3
+    },
+    '1167': {
+        nutrientName: 'niacin',
+        unitName: 'mg',
+        nutrientId: 1167,
+        value: 16
+    },
+    '1175': {
+        nutrientName: 'vitamin B6',
+        unitName: 'mg',
+        nutrientId: 1175,
+        value: 1.7
+    },
+    '1177': {
+        nutrientName: 'folate',
+        unitName: 'mcg',
+        nutrientId: 1177,
+        value: 400
+    },
+    '1178': {
+        nutrientName: 'vitamin B12',
+        unitName: 'mcg',
+        nutrientId: 1178,
+        value: 2.4
+    },
+    '1180': {
+        nutrientName: 'choline',
+        unitName: 'mg',
+        nutrientId: 1180,
+        value: 550
+    },
 };
 
 export const hasRdv = (nutrient: INutrient): boolean => Boolean(dailyValuesDictionary[nutrient.nutrientId.toString()]);
