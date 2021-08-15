@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IFood, INutrient } from '../models/models'
 
 interface IGeneralState {
+    loading: boolean;
     foods: IFood[];
     selectedNutrients: INutrient[];
     rdvOnly: boolean;
@@ -10,6 +11,7 @@ interface IGeneralState {
 const generalSlice = createSlice({
     name: 'general',
     initialState: {
+        loading: true,
         foods: [],
         selectedNutrients: [],
         rdvOnly: true,
@@ -33,11 +35,14 @@ const generalSlice = createSlice({
         },
         setRdvOnly: (state: IGeneralState, action: PayloadAction<boolean>) => {
             state.rdvOnly = action.payload;
+        },
+        setLoading: (state: IGeneralState, action: PayloadAction<boolean>) => {
+            state.loading = action.payload;
         }
     },
 })
 
-export const { addFood, removeFood, addNutrient, removeNutrient, setRdvOnly } = generalSlice.actions;
+export const { addFood, removeFood, addNutrient, removeNutrient, setRdvOnly, setLoading } = generalSlice.actions;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const GeneralState = (state: { general: IGeneralState; }) => state.general;

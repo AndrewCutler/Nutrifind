@@ -14,6 +14,10 @@ import FoodSearch from '../food-search/FoodSearch';
 import FoodTable from '../food-table/FoodTable';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from '@material-ui/core';
+import QueryParamsListener from '../query-params-listener/QueryParamsListener';
+import Loader from 'react-loader-spinner';
+import { GeneralState } from '../store/slice';
+import { useSelector } from 'react-redux';
 
 const Home = (): React.ReactElement => {
 	const theme = useTheme();
@@ -35,11 +39,6 @@ const Home = (): React.ReactElement => {
 	});
 
 	const classes = useStyles();
-
-	const location = useLocation();
-	console.log(location);
-	// useEffect(() => {
-	// }, []);
 
 	return (
 		<Container>
@@ -70,7 +69,8 @@ const Home = (): React.ReactElement => {
 					USDA&apos;s FoodData API
 				</a>
 				.
-			</div>
+			</div>{' '}
+			<QueryParamsListener />
 		</Container>
 	);
 };
