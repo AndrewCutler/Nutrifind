@@ -15,5 +15,22 @@ export interface INutrient {
     nutrientName: string;
     nutrientNumber?: string;
     unitName: string;
-    value: number;
+    value?: number;
+}
+
+export interface INutrientGetResponse {
+    id: number;
+    name: string;
+    unitName: string;
+}
+
+export interface IFoodNutrientGetResponse {
+    amount: number;
+    id: number;
+    nutrient: INutrientGetResponse;
+}
+
+export interface IFoodGetResponse {
+    fdcId: number;
+    foodNutrients: IFoodNutrientGetResponse[];
 }

@@ -13,8 +13,8 @@ export const search = (term: string): Promise<AxiosResponse<IResponseData>> => {
 };
 
 
-export const getFoodsByFdcIds = (fdcIds: string[]): Promise<AxiosResponse<IResponseData>> => {
-    return axios.get(foodsUrl(fdcIds) + key).then((response: AxiosResponse<IResponseData>) => {
+export const getFoodsByFdcIds = (fdcIds: string[]): Promise<AxiosResponse> => {
+    return axios.get(foodsUrl(fdcIds) + key).then((response: AxiosResponse) => {
         return response;
     })
 }

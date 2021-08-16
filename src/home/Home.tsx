@@ -1,23 +1,9 @@
-import {
-	Card,
-	CardContent,
-	Container,
-	createTheme,
-	CssBaseline,
-	makeStyles,
-	ThemeProvider
-} from '@material-ui/core';
-import { green, brown } from '@material-ui/core/colors';
+import { Card, CardContent, Container, makeStyles } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import FoodList from '../food-list/FoodList';
 import FoodSearch from '../food-search/FoodSearch';
 import FoodTable from '../food-table/FoodTable';
-import { useLocation } from 'react-router-dom';
 import { useTheme } from '@material-ui/core';
-import QueryParamsListener from '../query-params-listener/QueryParamsListener';
-import Loader from 'react-loader-spinner';
-import { GeneralState } from '../store/slice';
-import { useSelector } from 'react-redux';
 
 const Home = (): React.ReactElement => {
 	const theme = useTheme();

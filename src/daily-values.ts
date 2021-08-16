@@ -91,7 +91,7 @@ const dailyValuesDictionary: { [key: string]: INutrient } = {
         value: 55
     },
     '1093': {
-        nutrientName: 'selenium',
+        nutrientName: 'sodium',
         unitName: 'mg',
         nutrientId: 1093,
         value: 2300
@@ -175,7 +175,7 @@ export const hasRdv = (nutrient: INutrient): boolean => Boolean(dailyValuesDicti
 export const getPercentageOfRdv = (nutrient: INutrient): number => {
     const dailyValue = dailyValuesDictionary[nutrient.nutrientId.toString()];
 
-    if (!dailyValue) {
+    if (!dailyValue || !dailyValue.value || !nutrient.value) {
         console.error(`Nutrient data not found for ${nutrient.nutrientName}.`);
 
         return 0;

@@ -6,9 +6,9 @@ import {
 	useTheme
 } from '@material-ui/core';
 import { List, ListItem } from '@material-ui/core';
-import React, { ChangeEvent, MouseEventHandler, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IFood, INutrient } from '../models/models';
+import { INutrient } from '../models/models';
 import {
 	addNutrient,
 	GeneralState,
@@ -18,7 +18,6 @@ import {
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { useState } from 'react';
-import { useEffect } from 'react';
 import ClearIcon from '@material-ui/icons/Clear';
 import { hasRdv } from '../daily-values';
 
@@ -55,7 +54,6 @@ const FoodList = (): ReactElement => {
 		checked: boolean,
 		nutrient: INutrient
 	): void => {
-		console.log(nutrient);
 		if (checked) {
 			dispatch(addNutrient(nutrient));
 		} else {
