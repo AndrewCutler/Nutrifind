@@ -2,12 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { getFoodsByFdcIds } from '../api/api';
-import {
-	IFood,
-	IFoodGetResponse,
-	INutrient,
-	IFoodNutrientGetResponse
-} from '../models/models';
+import { IFoodGetResponse, INutrient } from '../models/models';
 import { addNutrient, setLoading } from '../store/slice';
 
 const QueryParamsListener = (): ReactElement => {

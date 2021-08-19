@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { IResponseData } from '../models/models';
+import { IFood, INutrient, IResponseData } from '../models/models';
 
 const key = 'r009ldhSE0vUCHfXM2bgGQNIekWLWFdkSr0VipuE'
 const searchUrl = (term: string): string => `https://api.nal.usda.gov/fdc/v1/foods/search?query=${term}&pageSize=10&api_key=`
@@ -17,4 +17,17 @@ export const getFoodsByFdcIds = (fdcIds: string[]): Promise<AxiosResponse> => {
     return axios.get(foodsUrl(fdcIds) + key).then((response: AxiosResponse) => {
         return response;
     })
+}
+
+export const generateUrl = (foods: IFood[], selectedNutrients: INutrient[]): string => {
+    const url = new URL(document.URL);
+
+    foods.forEach((f) => {
+        url.searchParams.append('fdcId', f.fdcId.toString());
+    });
+    selectedNutrients.forEach((n) => {
+        url.searchParams.append('nutrientId', n.nutrientId.toString());
+    });
+
+    return url.toString();
 }
