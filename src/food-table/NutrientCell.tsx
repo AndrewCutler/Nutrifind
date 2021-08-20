@@ -1,5 +1,6 @@
-import { TableCell, withStyles } from '@material-ui/core';
-import React, { ReactElement } from 'react';
+import { TableCell, Tooltip, withStyles } from '@material-ui/core';
+import React, { ReactElement, useState } from 'react';
+import { useEffect } from 'react';
 import { getPercentageOfRdv } from '../daily-values';
 import { getHexBackgroundByPercentage } from '../math';
 import { INutrient } from '../models/models';
@@ -11,17 +12,21 @@ const StyledTableCell = withStyles(() => ({
 }))(TableCell);
 
 const NutrientCell = ({ nutrient }: { nutrient: INutrient }): ReactElement => {
-	const getCellBackgroundColor = (): string => {
-		return getHexBackgroundByPercentage(getPercentageOfRdv(nutrient));
-	};
+	const [percent, setPercent] = useState<number>(0);
+	const [backgroundColor, setBackgroundColor] = useState<string>('');
+
+	useEffect(() => {
+		const percent = getPercentageOfRdv(nutrient);
+		setPercent(percent);
+		setBackgroundColor(getHexBackgroundByPercentage(percent));
+	}, []);
 
 	return (
-		<StyledTableCell
-			onClick={() => getCellBackgroundColor()}
-			style={{ backgroundColor: getCellBackgroundColor() }}
-		>
-			{nutrient.value} {nutrient.unitName}
-		</StyledTableCell>
+		<Tooltip title={`${percent.toPrecision(2)}% of RDV`}>
+			<StyledTableCell style={{ backgroundColor }}>
+				{nutrient.value} {nutrient.unitName}
+			</StyledTableCell>
+		</Tooltip>
 	);
 };
 

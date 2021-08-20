@@ -49,7 +49,8 @@ const FoodTable = (): ReactElement => {
 				<>
 					<TableContainer
 						style={{
-							border: `1px solid ${theme.palette.secondary.light}`
+							border: `1px solid ${theme.palette.secondary.light}`,
+							alignSelf: 'baseline'
 						}}
 					>
 						<Table>
