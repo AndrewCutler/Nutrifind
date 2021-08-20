@@ -2,12 +2,11 @@ import { TableCell, withStyles } from '@material-ui/core';
 import React, { ReactElement } from 'react';
 import { getPercentageOfRdv } from '../daily-values';
 import { getHexBackgroundByPercentage } from '../math';
-import { IFood, INutrient } from '../models/models';
+import { INutrient } from '../models/models';
 
-const StyledTableCell = withStyles((theme) => ({
+const StyledTableCell = withStyles(() => ({
 	head: {
 		backgroundColor: '#ff4b05'
-		// default e2d5d0
 	}
 }))(TableCell);
 

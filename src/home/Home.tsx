@@ -1,5 +1,5 @@
 import { Card, CardContent, Container, makeStyles } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 import FoodList from '../food-list/FoodList';
 import FoodSearch from '../food-search/FoodSearch';
 import FoodTable from '../food-table/FoodTable';

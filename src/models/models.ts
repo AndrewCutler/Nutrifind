@@ -6,7 +6,6 @@ export interface IResponseData {
 export interface IFood {
     description: string;
     fdcId: number;
-    foodCategory: string;
     foodNutrients: INutrient[];
 }
 
@@ -31,6 +30,7 @@ export interface IFoodNutrientGetResponse {
 }
 
 export interface IFoodGetResponse {
+    description: string;
     fdcId: number;
     foodNutrients: IFoodNutrientGetResponse[];
 }

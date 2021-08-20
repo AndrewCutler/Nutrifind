@@ -23,10 +23,10 @@ export const generateUrl = (foods: IFood[], selectedNutrients: INutrient[]): str
     const url = new URL(document.URL);
 
     foods.forEach((f) => {
-        url.searchParams.append('fdcId', f.fdcId.toString());
+        url.searchParams.append('f', f.fdcId.toString());
     });
     selectedNutrients.forEach((n) => {
-        url.searchParams.append('nutrientId', n.nutrientId.toString());
+        url.searchParams.append('n', n.nutrientId.toString());
     });
 
     return url.toString();

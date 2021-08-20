@@ -1,14 +1,5 @@
 import { INutrient } from './models/models';
 
-const dailyValues: INutrient[] = [
-    {
-        nutrientName: 'Calcium',
-        value: 1300,
-        unitName: 'mg',
-        nutrientId: 1087
-    },
-];
-
 const dailyValuesDictionary: { [key: string]: INutrient } = {
     '1087': {
         nutrientName: 'Calcium',

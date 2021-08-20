@@ -6,9 +6,10 @@ import {
 	TableContainer,
 	TableRow,
 	Typography,
-	useTheme
+	useTheme,
+	withStyles
 } from '@material-ui/core';
-import React, { ChangeEvent, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { hasRdv } from '../daily-values';
 import { GeneralState } from '../store/slice';
@@ -33,6 +34,13 @@ const FoodTable = (): ReactElement => {
 		setAnchorEl(null);
 	};
 
+	const TableHeaderCell = withStyles((theme) => ({
+		body: {
+			color: theme.palette.primary.dark,
+			fontWeight: 700
+		}
+	}))(TableCell);
+
 	const open = Boolean(anchorEl);
 
 	return (
@@ -46,8 +54,13 @@ const FoodTable = (): ReactElement => {
 					>
 						<Table>
 							<TableBody>
-								<TableRow>
-									<TableCell>Food</TableCell>
+								<TableRow
+									style={{
+										backgroundColor:
+											theme.palette.secondary.dark
+									}}
+								>
+									<TableHeaderCell>Food</TableHeaderCell>
 									{selectedNutrients?.length > 0 ? (
 										selectedNutrients
 											.filter(
@@ -55,17 +68,17 @@ const FoodTable = (): ReactElement => {
 											)
 											.map((n) => {
 												return (
-													<TableCell
+													<TableHeaderCell
 														key={n.nutrientId}
 													>
 														{n.nutrientName}
-													</TableCell>
+													</TableHeaderCell>
 												);
 											})
 									) : (
-										<TableCell>
+										<TableHeaderCell>
 											No nutrients selected
-										</TableCell>
+										</TableHeaderCell>
 									)}
 								</TableRow>
 								{foods?.map((f) => {
