@@ -40,7 +40,10 @@ const InfoPopover = (): ReactElement => {
 				}}
 			>
 				<Typography className={classes.root}>
-					This app blah blah blah.
+					{
+						// eslint-disable-next-line quotes
+						"Selected foods and their relevant nutrient contents will be displayed in the table below, with each nutrient's percentage of recommended daily value determining its background color: the redder the background, the higher the percentage of that nutrient."
+					}
 				</Typography>
 			</Popover>
 		</>
