@@ -11,11 +11,22 @@ const Home = (): React.ReactElement => {
 	const useStyles = makeStyles({
 		content: {
 			display: 'flex',
-			justifyContent: 'space-between'
+			justifyContent: 'space-between',
+			[theme.breakpoints.down('sm')]: {
+				flexDirection: 'column'
+			},
+			[theme.breakpoints.up('md')]: {
+				flexDirection: 'row'
+			}
 		},
 		searchCard: {
 			backgroundColor: theme.palette.primary.light,
-			marginRight: '2rem'
+			[theme.breakpoints.down('sm')]: {
+				marginBottom: '2rem'
+			},
+			[theme.breakpoints.up('md')]: {
+				marginRight: '2rem'
+			}
 		},
 		info: {
 			fontSize: '0.7rem',
