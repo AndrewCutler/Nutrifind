@@ -12,10 +12,10 @@ import Appbar from '../appbar/Appbar';
 const theme = createTheme({
 	palette: {
 		primary: {
-			main: green[200]
+			main: brown[400]
 		},
 		secondary: {
-			main: brown[400]
+			main: green[300]
 		},
 		background: {
 			default: '#e2d5d0'
@@ -37,7 +37,7 @@ const App = (): ReactElement => {
 							type='Rings'
 							height={100}
 							width={100}
-							color={theme.palette.primary.dark}
+							color={theme.palette.secondary.dark}
 						/>
 					</div>
 				) : (

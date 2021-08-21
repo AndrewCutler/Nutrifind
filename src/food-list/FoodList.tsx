@@ -122,7 +122,7 @@ const FoodList = (): ReactElement => {
 															n
 														)
 													}
-													color='primary'
+													color='secondary'
 												/>
 												<ListItemText
 													style={{

@@ -14,7 +14,7 @@ const Home = (): React.ReactElement => {
 			justifyContent: 'space-between'
 		},
 		searchCard: {
-			backgroundColor: theme.palette.secondary.light,
+			backgroundColor: theme.palette.primary.light,
 			marginRight: '2rem'
 		},
 		info: {

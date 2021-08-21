@@ -19,7 +19,7 @@ const FoodTable = (): ReactElement => {
 
 	const TableHeaderCell = withStyles((theme) => ({
 		body: {
-			color: theme.palette.primary.dark,
+			color: theme.palette.secondary.dark,
 			fontWeight: 700
 		}
 	}))(TableCell);
@@ -30,7 +30,7 @@ const FoodTable = (): ReactElement => {
 				<>
 					<TableContainer
 						style={{
-							border: `1px solid ${theme.palette.secondary.light}`,
+							border: `1px solid ${theme.palette.primary.light}`,
 							alignSelf: 'baseline'
 						}}
 					>
@@ -39,7 +39,7 @@ const FoodTable = (): ReactElement => {
 								<TableRow
 									style={{
 										backgroundColor:
-											theme.palette.secondary.dark
+											theme.palette.primary.dark
 									}}
 								>
 									<TableHeaderCell>Food</TableHeaderCell>

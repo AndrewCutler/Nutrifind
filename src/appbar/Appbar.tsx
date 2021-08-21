@@ -8,7 +8,7 @@ const Appbar = (): ReactElement => {
 
 	return (
 		<AppBar
-			color='secondary'
+			color='primary'
 			position='static'
 			style={{
 				marginBottom: theme.spacing(4),

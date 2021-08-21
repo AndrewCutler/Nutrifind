@@ -74,7 +74,7 @@ const FoodSearch = (): React.ReactElement => {
 				control={
 					<Checkbox
 						checked={rdvOnly}
-						color='primary'
+						color='secondary'
 						// eslint-disable-next-line @typescript-eslint/no-explicit-any
 						onChange={(_: any, checked: boolean) =>
 							dispatch(setRdvOnly(checked))
