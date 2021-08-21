@@ -19,8 +19,7 @@ const FoodTable = (): ReactElement => {
 
 	const TableHeaderCell = withStyles((theme) => ({
 		body: {
-			color: theme.palette.secondary.dark,
-			fontWeight: 700
+			color: theme.palette.secondary.main
 		}
 	}))(TableCell);
 
