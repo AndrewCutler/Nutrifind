@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Home from '../home/Home';
 import QueryParamsListener from '../query-params-listener/QueryParamsListener';
 import { GeneralState } from '../store/slice';
+import Appbar from '../appbar/Appbar';
 
 const theme = createTheme({
 	palette: {
@@ -29,6 +30,7 @@ const App = (): ReactElement => {
 		<ThemeProvider theme={theme}>
 			<Router>
 				<CssBaseline />
+				<Appbar />
 				{loading ? (
 					<div style={{ position: 'fixed', left: '50%', top: '50%' }}>
 						<Loader

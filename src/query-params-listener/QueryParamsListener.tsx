@@ -23,7 +23,6 @@ const QueryParamsListener = (): ReactElement => {
 			console.log('Retrieving food data...');
 			getFoodsByFdcIds(fdcIds).then((res) => {
 				const foods = res.data as IFoodGetResponse[];
-				console.log(foods);
 				foods.forEach((f) => {
 					const food = {
 						description: f.description,

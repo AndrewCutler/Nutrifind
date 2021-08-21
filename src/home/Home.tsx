@@ -11,8 +11,7 @@ const Home = (): React.ReactElement => {
 	const useStyles = makeStyles({
 		content: {
 			display: 'flex',
-			justifyContent: 'space-between',
-			marginTop: '84px'
+			justifyContent: 'space-between'
 		},
 		searchCard: {
 			backgroundColor: theme.palette.secondary.light,

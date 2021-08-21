@@ -21,27 +21,12 @@ const FoodTable = (): ReactElement => {
 	const { foods, selectedNutrients, rdvOnly } = useSelector(GeneralState);
 	const theme = useTheme();
 
-	const [anchorEl, setAnchorEl] = React.useState(null);
-
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const handleShareClick = ({ currentTarget }: any): void => {
-		const url = generateUrl(foods, selectedNutrients);
-		navigator.clipboard.writeText(url);
-		setAnchorEl(currentTarget);
-	};
-
-	const handlePopoverClose = (): void => {
-		setAnchorEl(null);
-	};
-
 	const TableHeaderCell = withStyles((theme) => ({
 		body: {
 			color: theme.palette.primary.dark,
 			fontWeight: 700
 		}
 	}))(TableCell);
-
-	const open = Boolean(anchorEl);
 
 	return (
 		<>
@@ -96,28 +81,6 @@ const FoodTable = (): ReactElement => {
 							</TableBody>
 						</Table>
 					</TableContainer>
-					<ShareIcon
-						style={{ cursor: 'pointer' }}
-						onClick={handleShareClick}
-					/>
-
-					<Popover
-						open={open}
-						anchorEl={anchorEl}
-						onClose={handlePopoverClose}
-						anchorOrigin={{
-							vertical: 'bottom',
-							horizontal: 'center'
-						}}
-						transformOrigin={{
-							vertical: 'top',
-							horizontal: 'center'
-						}}
-					>
-						<Typography>
-							Shareable link copied to the clipboard.
-						</Typography>
-					</Popover>
 				</>
 			)}
 		</>
