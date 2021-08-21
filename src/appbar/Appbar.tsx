@@ -11,7 +11,7 @@ const Appbar = (): ReactElement => {
 			color='primary'
 			position='static'
 			style={{
-				marginBottom: theme.spacing(4),
+				// marginBottom: theme.spacing(4),
 				color: theme.palette.common.black
 			}}
 		>
