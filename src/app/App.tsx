@@ -8,6 +8,7 @@ import Home from '../home/Home';
 import QueryParamsListener from '../query-params-listener/QueryParamsListener';
 import { GeneralState } from '../store/slice';
 import Appbar from '../appbar/Appbar';
+import AdUnit from '../ad-unit/AdUnit';
 
 const theme = createTheme({
 	palette: {
@@ -44,6 +45,7 @@ const App = (): ReactElement => {
 					<Home />
 				)}
 				<QueryParamsListener />
+				<AdUnit />
 			</Router>
 		</ThemeProvider>
 	);
