@@ -1,4 +1,4 @@
-import { INutrient } from './models/models';
+import { INutrient } from '../models/models';
 
 const dailyValuesDictionary: { [key: string]: INutrient } = {
     '1087': {

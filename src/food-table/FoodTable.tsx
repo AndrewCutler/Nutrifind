@@ -1,21 +1,17 @@
 import {
-	Popover,
 	Table,
 	TableBody,
 	TableCell,
 	TableContainer,
 	TableRow,
-	Typography,
 	useTheme,
 	withStyles
 } from '@material-ui/core';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
-import { hasRdv } from '../daily-values';
+import { hasRdv } from '../utility/daily-values';
 import { GeneralState } from '../store/slice';
-import ShareIcon from '@material-ui/icons/Share';
 import FoodRow from './FoodRow';
-import { generateUrl } from '../api/api';
 
 const FoodTable = (): ReactElement => {
 	const { foods, selectedNutrients, rdvOnly } = useSelector(GeneralState);

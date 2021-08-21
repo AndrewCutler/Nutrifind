@@ -1,8 +1,8 @@
 import { TableCell, Tooltip, withStyles } from '@material-ui/core';
 import React, { ReactElement, useState } from 'react';
 import { useEffect } from 'react';
-import { getPercentageOfRdv } from '../daily-values';
-import { getHexBackgroundByPercentage } from '../math';
+import { getPercentageOfRdv } from '../utility/daily-values';
+import { getHexBackgroundByPercentage } from '../utility/math';
 import { INutrient } from '../models/models';
 
 const StyledTableCell = withStyles(() => ({

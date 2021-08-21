@@ -19,7 +19,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { useState } from 'react';
 import ClearIcon from '@material-ui/icons/Clear';
-import { hasRdv } from '../daily-values';
+import { hasRdv } from '../utility/daily-values';
 
 const FoodList = (): ReactElement => {
 	const theme = useTheme();
