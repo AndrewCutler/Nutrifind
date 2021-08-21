@@ -6,6 +6,7 @@ interface IGeneralState {
     foods: IFood[];
     selectedNutrients: INutrient[];
     rdvOnly: boolean;
+    expanded: boolean;
 }
 
 const generalSlice = createSlice({
@@ -15,6 +16,7 @@ const generalSlice = createSlice({
         foods: [],
         selectedNutrients: [],
         rdvOnly: true,
+        expanded: true,
     } as IGeneralState,
     reducers: {
         addFood: (state: IGeneralState, action: PayloadAction<IFood>) => {
@@ -38,11 +40,14 @@ const generalSlice = createSlice({
         },
         setLoading: (state: IGeneralState, action: PayloadAction<boolean>) => {
             state.loading = action.payload;
-        }
+        },
+        setExpanded: (state: IGeneralState, action: PayloadAction<boolean>) => {
+            state.expanded = action.payload;
+        },
     },
 })
 
-export const { addFood, removeFood, addNutrient, removeNutrient, setRdvOnly, setLoading } = generalSlice.actions;
+export const { addFood, removeFood, addNutrient, removeNutrient, setRdvOnly, setLoading, setExpanded } = generalSlice.actions;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const GeneralState = (state: { general: IGeneralState; }) => state.general;
