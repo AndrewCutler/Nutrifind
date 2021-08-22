@@ -1,10 +1,4 @@
-import {
-	Popover,
-	Input,
-	Typography,
-	useTheme,
-	Tooltip
-} from '@material-ui/core';
+import { Popover, Input, useTheme, Tooltip } from '@material-ui/core';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { generateUrl } from '../api/api';
@@ -24,7 +18,6 @@ const SharePopover = (): ReactElement => {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleShareClick = ({ currentTarget }: any): void => {
-		// navigator.clipboard.writeText(url);
 		setUrl(generateUrl(foods, selectedNutrients));
 		setAnchorEl(currentTarget);
 	};
