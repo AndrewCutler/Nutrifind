@@ -4,3 +4,4 @@
 2. Sortable?
 3. Exportable
 4. mobile friendly
+5. favicon

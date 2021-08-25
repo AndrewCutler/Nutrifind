@@ -6,8 +6,9 @@ import { getHexBackgroundByPercentage } from '../utility/math';
 import { INutrient } from '../models/models';
 
 const StyledTableCell = withStyles(() => ({
-	head: {
-		backgroundColor: '#ff4b05'
+	body: {
+		// backgroundColor: '#ff4b05',
+		// padding: 0
 	}
 }))(TableCell);
 
